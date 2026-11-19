@@ -1,0 +1,2341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Noël — 1080p Luxury Christmas Video Invitation Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg-studio: #08090d;
+    --bg-panel: #10131a;
+    --bg-input: #171b24;
+    --border-subtle: rgba(226, 192, 125, 0.18);
+    --border-focus: #e2c07d;
+    --gold: #e2c07d;
+    --gold-bright: #f5dfb0;
+    --text-main: #f7f4ed;
+    --text-muted: #9aa2b2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: radial-gradient(circle at 18% 12%, #161b26 0%, #08090d 65%);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .font-display { font-family: 'Cinzel', Georgia, serif; }
+  .font-script { font-family: 'Great Vibes', cursive; }
+  .font-editorial { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+  /* Phone Frame & Canvas Responsive Scaling */
+  .phone-bezel {
+    position: relative;
+    width: min(86vw, 350px);
+    aspect-ratio: 9 / 16;
+    border-radius: 34px;
+    padding: 8px;
+    background: linear-gradient(145deg, #2b303d 0%, #101218 50%, #26221a 100%);
+    box-shadow:
+      0 0 0 1px rgba(226, 192, 125, 0.35),
+      0 28px 70px -12px rgba(0, 0, 0, 0.85),
+      0 0 50px -15px rgba(226, 192, 125, 0.18);
+  }
+  .phone-bezel canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 26px;
+    background: #090b10;
+  }
+
+  /* Custom Form Controls */
+  .studio-input {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    color: var(--text-main);
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .studio-input:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    background: #1c212c;
+    box-shadow: 0 0 0 3px rgba(226, 192, 125, 0.15);
+  }
+  .studio-label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+
+  /* Custom Range Slider */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-runnable-track {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: -5px;
+    box-shadow: 0 0 10px rgba(226, 192, 125, 0.6);
+  }
+
+  /* File Upload Pill */
+  input[type="file"]::file-selector-button {
+    background: rgba(226, 192, 125, 0.14);
+    color: var(--gold-bright);
+    border: 1px solid rgba(226, 192, 125, 0.35);
+    border-radius: 8px;
+    padding: 5px 11px;
+    margin-right: 10px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  input[type="file"]::file-selector-button:hover {
+    background: rgba(226, 192, 125, 0.25);
+  }
+
+  /* Gold Shimmer Primary Button */
+  .btn-gold {
+    background: linear-gradient(135deg, #f0d59b 0%, #cfa454 55%, #e6c580 100%);
+    color: #0b0d12;
+    font-weight: 700;
+    border-radius: 999px;
+    box-shadow: 0 8px 25px -4px rgba(226, 192, 125, 0.4);
+    transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+  }
+  .btn-gold:hover:not(:disabled) {
+    transform: translateY(-1px);
+    filter: brightness(1.06);
+    box-shadow: 0 12px 30px -4px rgba(226, 192, 125, 0.55);
+  }
+  .btn-gold:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .tab-btn.active {
+    background: rgba(226, 192, 125, 0.15);
+    color: var(--gold-bright);
+    border-color: rgba(226, 192, 125, 0.45);
+  }
+
+  /* Subtle Scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(226, 192, 125, 0.22); border-radius: 99px; }
+</style>
+</head>
+<body class="antialiased selection:bg-amber-300/30 selection:text-amber-100">
+
+  <!-- Top Header Bar -->
+  <header class="border-b border-white/10 bg-black/30 backdrop-blur-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-200/20 to-amber-500/10 border border-amber-300/40 flex items-center justify-center text-amber-300 shadow-inner">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-display text-base sm:text-lg font-semibold tracking-wider text-amber-100">ATELIER NOËL</h1>
+            <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-amber-400/15 text-amber-300 border border-amber-400/30">1080p HD</span>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block">Bespoke Vertical Motion Invitation Studio • 9:16 Full HD Export</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2.5">
+        <button id="btnSoundTop" type="button" class="px-3.5 py-2 rounded-full text-xs font-semibold border border-amber-300/30 bg-amber-300/10 text-amber-200 hover:bg-amber-300/20 transition flex items-center gap-1.5">
+          <span id="soundDot" class="w-2 h-2 rounded-full bg-slate-500"></span>
+          <span id="soundLabel">Sound: Off</span>
+        </button>
+        <button id="btnExportTop" type="button" class="btn-gold px-4 sm:px-5 py-2 text-xs sm:text-sm flex items-center gap-2 cursor-pointer">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Export 1080p MP4</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Workspace -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 lg:py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+    <!-- LEFT COLUMN: Live 1080x1920 Preview Stage -->
+    <section class="lg:col-span-5 flex flex-col items-center lg:sticky lg:top-20">
+      <div class="phone-bezel">
+        <!-- Native 1080x1920 Full HD Canvas -->
+        <canvas id="stage" width="1080" height="1920" aria-label="1080p Christmas Video Invitation Preview"></canvas>
+      </div>
+
+      <!-- Timeline Scrubber & Scene Jump Pills -->
+      <div class="w-full max-w-[350px] mt-4 bg-[#10131a]/90 border border-white/10 rounded-2xl p-3.5 shadow-xl">
+        <div class="flex items-center justify-between text-[11px] font-medium text-slate-400 mb-1.5">
+          <span id="timeDisplay">00:00 / 00:24</span>
+          <span id="sceneNameDisplay" class="text-amber-300/90 font-semibold">Scene 1 · Snowglobe Reveal</span>
+        </div>
+        <input id="scrubber" type="range" min="0" max="24" step="0.05" value="0" class="w-full mb-3" aria-label="Video timeline scrubber">
+
+        <!-- Scene Quick-Jump Buttons -->
+        <div class="grid grid-cols-4 gap-1.5 mb-3">
+          <button type="button" data-scene="0" class="scene-jump py-1.5 px-2 rounded-lg text-[11px] font-semibold bg-white/5 hover:bg-amber-300/15 text-slate-300 hover:text-amber-200 border border-white/5 transition">1. Intro</button>
+          <button type="button" data-scene="5.5" class="scene-jump py-1.5 px-2 rounded-lg text-[11px] font-semibold bg-white/5 hover:bg-amber-300/15 text-slate-300 hover:text-amber-200 border border-white/5 transition">2. Host</button>
+          <button type="button" data-scene="11.5" class="scene-jump py-1.5 px-2 rounded-lg text-[11px] font-semibold bg-white/5 hover:bg-amber-300/15 text-slate-300 hover:text-amber-200 border border-white/5 transition">3. Details</button>
+          <button type="button" data-scene="18.0" class="scene-jump py-1.5 px-2 rounded-lg text-[11px] font-semibold bg-white/5 hover:bg-amber-300/15 text-slate-300 hover:text-amber-200 border border-white/5 transition">4. Finale</button>
+        </div>
+
+        <!-- Playback & Audio Controls -->
+        <div class="flex items-center justify-center gap-2">
+          <button id="btnPlayPause" type="button" class="flex-1 py-2 px-3 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 text-white transition">
+            Pause
+          </button>
+          <button id="btnReplay" type="button" class="flex-1 py-2 px-3 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 text-white transition">
+            Replay
+          </button>
+          <button id="btnSoundStage" type="button" class="flex-1 py-2 px-3 rounded-xl text-xs font-semibold border border-amber-300/35 bg-amber-300/10 hover:bg-amber-300/20 text-amber-200 transition">
+            Sound: Off
+          </button>
+        </div>
+      </div>
+
+      <!-- Export Status & Result Video Drawer -->
+      <div id="statusBox" role="status" class="mt-3 text-center text-xs font-medium text-amber-200 min-h-[20px] max-w-[350px]"></div>
+
+      <div id="exportResult" hidden class="w-full max-w-[350px] mt-3 bg-[#10131a] border border-amber-300/35 rounded-2xl p-4 shadow-2xl">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-300">1080×1920 Master Ready</span>
+          <span class="text-[11px] text-slate-400">MP4 • 30 FPS</span>
+        </div>
+        <video id="outputVideo" controls playsinline class="w-full rounded-xl bg-black mb-3 border border-white/10"></video>
+        <div class="flex gap-2">
+          <button id="btnSaveFile" type="button" class="btn-gold flex-1 py-2.5 text-xs text-center cursor-pointer">Save 1080p MP4</button>
+          <button id="btnShareFile" type="button" hidden class="py-2.5 px-4 rounded-full text-xs font-semibold border border-amber-300/40 text-amber-200 hover:bg-amber-300/10">Share</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RIGHT COLUMN: Customization Studio -->
+    <section class="lg:col-span-7 bg-[#10131a]/85 border border-white/10 rounded-3xl p-5 sm:p-7 shadow-2xl backdrop-blur-md">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-5 border-b border-white/10">
+        <div>
+          <h2 class="font-display text-xl sm:text-2xl font-semibold text-amber-100">Customize Invitation</h2>
+          <p class="text-xs sm:text-sm text-slate-400 mt-0.5">All edits render live in 1080×1920 Full HD. Everything stays privately on your device.</p>
+        </div>
+        <button id="btnDownloadMain" type="button" class="btn-gold px-5 py-2.5 text-xs sm:text-sm cursor-pointer">
+          Download 1080p Video
+        </button>
+      </div>
+
+      <!-- Luxury Theme Selector Cards -->
+      <div class="mt-5">
+        <span class="studio-label">1. Select Luxury Color Palette</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mt-1.5" id="themeSelector">
+          <button type="button" data-theme="0" class="theme-card active text-left p-3 rounded-xl border border-amber-300/60 bg-amber-300/10 transition flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full shrink-0 border border-amber-200/50 shadow-md" style="background: linear-gradient(135deg, #090b10 45%, #e2c07d 100%);"></span>
+            <div>
+              <div class="text-xs font-bold text-amber-100">Noir &amp; Champagne</div>
+              <div class="text-[11px] text-slate-400">Art Deco Obsidian</div>
+            </div>
+          </button>
+          <button type="button" data-theme="1" class="theme-card text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full shrink-0 border border-rose-200/50 shadow-md" style="background: linear-gradient(135deg, #1b0b13 45%, #e5a99c 100%);"></span>
+            <div>
+              <div class="text-xs font-bold text-rose-100">Velvet &amp; Rose Gold</div>
+              <div class="text-[11px] text-slate-400">Mulberry Candlelight</div>
+            </div>
+          </button>
+          <button type="button" data-theme="2" class="theme-card text-left p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full shrink-0 border border-sky-200/50 shadow-md" style="background: linear-gradient(135deg, #08151e 45%, #d8e4ec 100%);"></span>
+            <div>
+              <div class="text-xs font-bold text-sky-100">Nordic Glacier</div>
+              <div class="text-[11px] text-slate-400">Midnight &amp; Platinum</div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Editor Section Tabs -->
+      <div class="flex gap-2 mt-6 pb-2 overflow-x-auto" role="tablist">
+        <button type="button" data-tab="tab-event" class="tab-btn active px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 text-slate-300 transition whitespace-nowrap">Event &amp; Host</button>
+        <button type="button" data-tab="tab-details" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 text-slate-300 transition whitespace-nowrap">Date, Venue &amp; RSVP</button>
+        <button type="button" data-tab="tab-media" class="tab-btn px-4 py-2 rounded-xl text-xs font-semibold border border-white/10 text-slate-300 transition whitespace-nowrap">Photo &amp; Holiday Audio</button>
+      </div>
+
+      <!-- TAB 1: Event & Host -->
+      <div id="tab-event" class="tab-panel mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="studio-label" for="inOpening">Scene 1 Top Tagline</label>
+          <input id="inOpening" class="studio-input" value="A Holiday Soirée">
+        </div>
+        <div>
+          <label class="studio-label" for="inIntroScript">Scene 1 Center Calligraphy</label>
+          <input id="inIntroScript" class="studio-input" value="You’re Cordially Invited">
+        </div>
+        <div>
+          <label class="studio-label" for="inEventTitle">Main Event Title</label>
+          <input id="inEventTitle" class="studio-input" value="Christmas Gala">
+        </div>
+        <div>
+          <label class="studio-label" for="inHost">Host Name(s)</label>
+          <input id="inHost" class="studio-input" value="Victoria &amp; Julian Vance">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="studio-label" for="inClosingTitle">Scene 4 Finale Heading</label>
+          <input id="inClosingTitle" class="studio-input" value="Season’s Greetings">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="studio-label" for="inClosingMsg">Scene 4 Personal Message</label>
+          <textarea id="inClosingMsg" rows="3" class="studio-input">Join us for an enchanting evening of winter cocktails, candlelight, and festive cheer as we toast to the magic of the season.</textarea>
+        </div>
+      </div>
+
+      <!-- TAB 2: Date, Venue & RSVP -->
+      <div id="tab-details" class="tab-panel hidden mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label class="studio-label" for="inDate">Event Date</label>
+          <input id="inDate" class="studio-input" value="Saturday, December 20th">
+        </div>
+        <div>
+          <label class="studio-label" for="inTime">Event Time</label>
+          <input id="inTime" class="studio-input" value="Cocktails at 7:30 PM">
+        </div>
+        <div>
+          <label class="studio-label" for="inVenue">Venue Name</label>
+          <input id="inVenue" class="studio-input" value="The Conservatory Ballroom">
+        </div>
+        <div>
+          <label class="studio-label" for="inAddress">Street Address / City</label>
+          <input id="inAddress" class="studio-input" value="480 Fifth Avenue, New York">
+        </div>
+        <div>
+          <label class="studio-label" for="inRsvp1">RSVP Instruction</label>
+          <input id="inRsvp1" class="studio-input" value="Kindly reply by December 12th">
+        </div>
+        <div>
+          <label class="studio-label" for="inRsvp2">RSVP Phone or Email</label>
+          <input id="inRsvp2" class="studio-input" value="+1 (555) 234-8910">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="studio-label" for="inDress">Dress Code / Attire</label>
+          <input id="inDress" class="studio-input" value="Black Tie &amp; Winter Velvet">
+        </div>
+      </div>
+
+      <!-- TAB 3: Photo & Holiday Audio -->
+      <div id="tab-media" class="tab-panel hidden mt-4 space-y-5">
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <label class="studio-label mb-0" for="inPhoto">Portrait / Couple / Family Photo (Optional)</label>
+            <button id="btnClearPhoto" type="button" hidden class="text-[11px] font-semibold text-rose-300 hover:underline">Remove photo</button>
+          </div>
+          <input id="inPhoto" type="file" accept="image/*" class="studio-input text-xs">
+          <p class="text-[11.5px] text-slate-400 mt-2">
+            Displayed inside a rotating celestial gold halo in Scene 2. Leave empty to showcase the bespoke Art Deco Christmas Wreath &amp; Candlelight animation.
+          </p>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10 space-y-4">
+          <div>
+            <label class="studio-label" for="inAudioMix">Video Audio Track</label>
+            <select id="inAudioMix" class="studio-input">
+              <option value="both">Holiday Music-Box &amp; Sleigh Bells + My Song</option>
+              <option value="fx" selected>Holiday Music-Box, Chimes &amp; Sleigh Bells Only</option>
+              <option value="mus">My Uploaded Song Only</option>
+              <option value="none">Silent Video (No Audio)</option>
+            </select>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1">
+              <label class="studio-label mb-0" for="inSong">Upload Custom Holiday Song (Optional MP3 / M4A / WAV)</label>
+              <button id="btnClearSong" type="button" hidden class="text-[11px] font-semibold text-rose-300 hover:underline">Remove song</button>
+            </div>
+            <input id="inSong" type="file" accept="audio/*" class="studio-input text-xs">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <div class="flex justify-between text-[11px] text-slate-400 mb-1">
+                <span class="font-semibold uppercase tracking-wider">Custom Song Volume</span>
+                <span id="volVal">65%</span>
+              </div>
+              <input id="inSongVol" type="range" min="0" max="100" value="65" class="w-full">
+            </div>
+            <div>
+              <label class="studio-label" for="inSongOffset">Start Song At (Seconds)</label>
+              <input id="inSongOffset" type="number" min="0" step="1" value="0" class="studio-input">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Quick Footer Note -->
+      <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400">
+        <span>Resolution: <strong class="text-slate-200">1080 × 1920 px (Full HD 9:16)</strong></span>
+        <span>Tip: Toggle <strong class="text-amber-200">Sound: On</strong> to audition the holiday bells &amp; celesta melody before exporting.</span>
+      </div>
+    </section>
+  </main>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ============================================================================
+     1. CANVAS SETUP & LUXURY COLOR PALETTES (1080 x 1920 FULL HD 9:16)
+     ============================================================================ */
+  const W = 1080;
+  const H = 1920;
+  const canvas = document.getElementById('stage');
+  const ctx = canvas.getContext('2d', { alpha: false });
+  canvas.width = W;
+  canvas.height = H;
+
+  const THEMES = [
+    {
+      name: 'Noir & Champagne Gold',
+      bgTop: '#131722',
+      bgMid: '#0b0d13',
+      bgBot: '#050609',
+      cardBg: 'rgba(22, 26, 36, 0.72)',
+      primary: '#e2c07d',
+      primaryBright: '#f8e6be',
+      primaryDeep: '#9e7b36',
+      textMain: '#faf6ee',
+      textMuted: '#cbbba0',
+      glow: 'rgba(226, 192, 125, 0.28)',
+      particle: '#f5dfb0',
+      accentWarm: '#ffbe6b'
+    },
+    {
+      name: 'Velvet & Rose Gold',
+      bgTop: '#2d111e',
+      bgMid: '#180810',
+      bgBot: '#0c0307',
+      cardBg: 'rgba(42, 15, 28, 0.72)',
+      primary: '#e6a89c',
+      primaryBright: '#fce0d9',
+      primaryDeep: '#a66559',
+      textMain: '#fdf6f4',
+      textMuted: '#dcb9b1',
+      glow: 'rgba(230, 168, 156, 0.28)',
+      particle: '#fad5cd',
+      accentWarm: '#ffad99'
+    },
+    {
+      name: 'Nordic Glacier & Silver',
+      bgTop: '#132c3e',
+      bgMid: '#091722',
+      bgBot: '#040b11',
+      cardBg: 'rgba(15, 37, 53, 0.72)',
+      primary: '#d4e2ec',
+      primaryBright: '#ffffff',
+      primaryDeep: '#7c96a8',
+      textMain: '#f5f9fc',
+      textMuted: '#b2c6d4',
+      glow: 'rgba(212, 226, 236, 0.26)',
+      particle: '#e8f3fa',
+      accentWarm: '#a8dcff'
+    }
+  ];
+
+  // Timeline structure (24.0 seconds total across 4 bespoke scenes)
+  const SCENE_STARTS = [0, 5.5, 11.5, 18.0];
+  const SCENE_NAMES = [
+    'Scene 1 · Snowglobe Reveal',
+    'Scene 2 · Host & Wreath',
+    'Scene 3 · Event Itinerary',
+    'Scene 4 · Grand Finale'
+  ];
+  const DURATION = 24.0;
+
+  let currentThemeIdx = 0;
+  let userPhoto = null;
+  let userAudioBuffer = null;
+
+  // Deterministic particle seeds for bokeh, snow, and gold dust
+  const BOKEH_ORBS = Array.from({ length: 26 }, (_, i) => ({
+    x: ((i * 197 + 43) % 100) / 100,
+    y: ((i * 313 + 71) % 100) / 100,
+    r: 18 + (i % 5) * 16,
+    speedY: 0.012 + (i % 4) * 0.006,
+    phase: i * 1.37,
+    alpha: 0.06 + (i % 4) * 0.035
+  }));
+
+  const SNOW_DUST = Array.from({ length: 75 }, (_, i) => ({
+    x: ((i * 139 + 19) % 1000) / 1000,
+    y: ((i * 271 + 83) % 1000) / 1000,
+    r: 1.8 + (i % 4) * 1.4,
+    speedY: 0.045 + (i % 6) * 0.014,
+    drift: 14 + (i % 5) * 8,
+    phase: i * 0.85,
+    isGold: i % 3 === 0
+  }));
+
+  /* ============================================================================
+     2. EASING & TYPOGRAPHY HELPERS
+     ============================================================================ */
+  const clamp01 = (x) => Math.max(0, Math.min(1, x));
+  const easeOutCubic = (x) => { x = clamp01(x); return 1 - Math.pow(1 - x, 3); };
+  const easeOutQuint = (x) => { x = clamp01(x); return 1 - Math.pow(1 - x, 5); };
+  const easeInOutSine = (x) => { x = clamp01(x); return -(Math.cos(Math.PI * x) - 1) / 2; };
+  const easeOutBack = (x) => {
+    x = clamp01(x);
+    const c1 = 1.70158;
+    const c3 = c1 + 1;
+    return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+  };
+  const seg = (t, start, dur) => clamp01((t - start) / (dur || 0.8));
+
+  function val(id) {
+    const el = document.getElementById(id);
+    return el ? el.value : '';
+  }
+
+  function createGoldGradient(x1, y1, x2, y2, th) {
+    const g = ctx.createLinearGradient(x1, y1, x2, y2);
+    g.addColorStop(0, th.primaryDeep);
+    g.addColorStop(0.32, th.primaryBright);
+    g.addColorStop(0.55, th.primary);
+    g.addColorStop(0.82, th.primaryBright);
+    g.addColorStop(1, th.primaryDeep);
+    return g;
+  }
+
+  // Masked upward reveal for luxury editorial typography
+  function drawMaskedText(text, x, y, options) {
+    const {
+      size = 48,
+      font = 'Cinzel',
+      weight = '600',
+      color = '#ffffff',
+      progress = 1,
+      maxWidth = 900,
+      letterSpacing = 0,
+      shadow = false
+    } = options;
+
+    if (!text || progress <= 0.001) return;
+    const p = easeOutQuint(progress);
+
+    ctx.save();
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    let fontSize = size;
+    const buildFont = (sz) => {
+      if (font === 'Great Vibes') return `${sz}px "Great Vibes", cursive`;
+      if (font === 'Cormorant Garamond') return `${weight} ${sz}px "Cormorant Garamond", Georgia, serif`;
+      return `${weight} ${sz}px "Cinzel", Georgia, serif`;
+    };
+
+    if (letterSpacing && 'letterSpacing' in ctx) {
+      ctx.letterSpacing = `${letterSpacing}px`;
+    }
+    ctx.font = buildFont(fontSize);
+    const measured = ctx.measureText(text).width;
+    if (measured > maxWidth) {
+      fontSize = Math.floor(fontSize * (maxWidth / measured));
+      ctx.font = buildFont(fontSize);
+    }
+
+    // Clip box for crisp upward editorial slide
+    const clipH = fontSize * 1.65;
+    ctx.beginPath();
+    ctx.rect(x - maxWidth / 2 - 40, y - clipH / 2, maxWidth + 80, clipH);
+    ctx.clip();
+
+    ctx.globalAlpha *= clamp01(progress * 1.4);
+    ctx.fillStyle = color;
+    if (shadow) {
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+      ctx.shadowBlur = 18;
+      ctx.shadowOffsetY = 6;
+    }
+
+    const offsetY = (1 - p) * (fontSize * 0.85);
+    ctx.fillText(text, x, y + offsetY);
+    ctx.restore();
+  }
+
+  function drawWrappedParagraph(text, x, y, maxWidth, lineHeight, fontSize, color, progress) {
+    if (!text || progress <= 0.001) return;
+    ctx.save();
+    ctx.font = `500 ${fontSize}px "Cormorant Garamond", Georgia, serif`;
+    const words = text.split(/\s+/);
+    const lines = [];
+    let current = '';
+    for (const w of words) {
+      const test = current ? `${current} ${w}` : w;
+      if (ctx.measureText(test).width > maxWidth && current) {
+        lines.push(current);
+        current = w;
+      } else {
+        current = test;
+      }
+    }
+    if (current) lines.push(current);
+    ctx.restore();
+
+    lines.forEach((line, idx) => {
+      const lineProg = seg(progress, idx * 0.14, 0.65);
+      drawMaskedText(line, x, y + idx * lineHeight, {
+        size: fontSize,
+        font: 'Cormorant Garamond',
+        weight: '500',
+        color,
+        progress: lineProg,
+        maxWidth: maxWidth + 40
+      });
+    });
+  }
+
+  /* ============================================================================
+     3. BESPOKE VECTOR ORNAMENTS & MOTION ELEMENTS
+     ============================================================================ */
+  function drawFourPointStar(cx, cy, outerR, innerR, rotation, fill) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(rotation);
+    ctx.beginPath();
+    for (let i = 0; i < 8; i++) {
+      const r = i % 2 === 0 ? outerR : innerR;
+      const a = (i * Math.PI) / 4;
+      if (i === 0) ctx.moveTo(Math.cos(a) * r, Math.sin(a) * r);
+      else ctx.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+    }
+    ctx.closePath();
+    ctx.fillStyle = fill;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawFiligreeDivider(cx, cy, width, progress, th) {
+    const p = easeOutCubic(progress);
+    if (p <= 0.01) return;
+    const halfW = (width / 2) * p;
+
+    ctx.save();
+    const grad = createGoldGradient(cx - width / 2, cy, cx + width / 2, cy, th);
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 2.2;
+
+    // Left & right tapering lines
+    ctx.beginPath();
+    ctx.moveTo(cx - 22, cy);
+    ctx.lineTo(cx - halfW, cy);
+    ctx.moveTo(cx + 22, cy);
+    ctx.lineTo(cx + halfW, cy);
+    ctx.stroke();
+
+    // Center diamond & flanking dots
+    ctx.globalAlpha = p;
+    drawFourPointStar(cx, cy, 12 * p, 4 * p, 0, grad);
+    if (halfW > 45) {
+      ctx.fillStyle = th.primaryBright;
+      ctx.beginPath();
+      ctx.arc(cx - 34, cy, 3, 0, Math.PI * 2);
+      ctx.arc(cx + 34, cy, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  // Animated Art Deco Cathedral Arch Frame
+  function drawArtDecoArchFrame(t, drawProgress, th) {
+    const p = easeOutCubic(drawProgress);
+    const padX = 76;
+    const topY = 95;
+    const botY = H - 95;
+    const archR = (W - padX * 2) / 2;
+    const archCenterY = topY + archR;
+
+    ctx.save();
+    const goldStroke = createGoldGradient(0, topY, W, botY, th);
+
+    // Subtle inner dark vignette frame
+    ctx.strokeStyle = goldStroke;
+    ctx.lineWidth = 3;
+    ctx.globalAlpha = 0.85 * p;
+
+    // Outer Arch Path
+    ctx.beginPath();
+    ctx.moveTo(padX, botY);
+    ctx.lineTo(padX, archCenterY);
+    ctx.arc(W / 2, archCenterY, archR, Math.PI, 0, false);
+    ctx.lineTo(W - padX, botY);
+    ctx.closePath();
+    ctx.stroke();
+
+    // Inner Double Hairline Arch
+    const inset = 18;
+    ctx.lineWidth = 1.4;
+    ctx.globalAlpha = 0.55 * p;
+    ctx.beginPath();
+    ctx.moveTo(padX + inset, botY - inset);
+    ctx.lineTo(padX + inset, archCenterY);
+    ctx.arc(W / 2, archCenterY, archR - inset, Math.PI, 0, false);
+    ctx.lineTo(W - padX - inset, botY - inset);
+    ctx.closePath();
+    ctx.stroke();
+
+    // Art Deco Sunburst Rays at Top Apex
+    const rayCount = 11;
+    ctx.globalAlpha = 0.35 * p;
+    for (let i = 0; i < rayCount; i++) {
+      const angle = Math.PI + (i / (rayCount - 1)) * Math.PI;
+      const r1 = archR - 14;
+      const r2 = archR + 26 + (i % 2 === 0 ? 14 : 0);
+      ctx.beginPath();
+      ctx.moveTo(W / 2 + Math.cos(angle) * r1, archCenterY + Math.sin(angle) * r1);
+      ctx.lineTo(W / 2 + Math.cos(angle) * r2, archCenterY + Math.sin(angle) * r2);
+      ctx.stroke();
+    }
+
+    // Bottom Corner Geometric Ornaments
+    const cornerSize = 36;
+    ctx.globalAlpha = 0.8 * p;
+    ctx.lineWidth = 2;
+    [[padX, botY, 1, -1], [W - padX, botY, -1, -1]].forEach(([cx, cy, dx, dy]) => {
+      ctx.strokeRect(
+        dx > 0 ? cx : cx - cornerSize,
+        cy - cornerSize,
+        cornerSize,
+        cornerSize
+      );
+      drawFourPointStar(cx + dx * (cornerSize / 2), cy + dy * (cornerSize / 2), 9, 3, t * 0.5, th.primaryBright);
+    });
+
+    // Top Apex Twinkling Star
+    const twinkle = 1 + 0.16 * Math.sin(t * 4.2);
+    drawFourPointStar(W / 2, topY - 4, 22 * twinkle * p, 6 * twinkle * p, t * 0.35, th.primaryBright);
+
+    ctx.restore();
+  }
+
+  // Luxury Golden Snowglobe / Celestial Ornament Centerpiece (Scene 1)
+  function drawGoldenSnowglobe(cx, cy, radius, lt, th) {
+    const enter = easeOutBack(seg(lt, 0.25, 1.25));
+    if (enter <= 0.01) return;
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(enter, enter);
+
+    // Ambient Radial Halo behind Snowglobe
+    const halo = ctx.createRadialGradient(0, 0, radius * 0.2, 0, 0, radius * 1.65);
+    halo.addColorStop(0, th.glow);
+    halo.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius * 1.65, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Rotating Celestial Astrolabe Rings
+    ctx.save();
+    ctx.rotate(lt * 0.22);
+    ctx.strokeStyle = th.primary;
+    ctx.lineWidth = 1.6;
+    ctx.globalAlpha = 0.55;
+    ctx.setLineDash([14, 10]);
+    ctx.beginPath();
+    ctx.arc(0, 0, radius + 34, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.save();
+    ctx.rotate(-lt * 0.16);
+    ctx.strokeStyle = th.primaryBright;
+    ctx.lineWidth = 1.2;
+    ctx.globalAlpha = 0.4;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius + 54, 0, Math.PI * 2);
+    ctx.stroke();
+    for (let k = 0; k < 8; k++) {
+      const a = (k * Math.PI) / 4;
+      drawFourPointStar(Math.cos(a) * (radius + 54), Math.sin(a) * (radius + 54), 10, 3, lt, th.primaryBright);
+    }
+    ctx.restore();
+
+    // Glass Sphere Clip
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.clip();
+
+    // Deep Winter Night Sky Inside Globe
+    const sky = ctx.createRadialGradient(0, -radius * 0.3, 10, 0, 0, radius);
+    sky.addColorStop(0, th.bgTop);
+    sky.addColorStop(1, th.bgBot);
+    ctx.fillStyle = sky;
+    ctx.fillRect(-radius, -radius, radius * 2, radius * 2);
+
+    // Geometric Art Deco Pine Trees Inside Snowglobe
+    const drawMiniTree = (tx, ty, scale, alpha) => {
+      ctx.save();
+      ctx.translate(tx, ty);
+      ctx.scale(scale, scale);
+      ctx.globalAlpha = alpha;
+      const tGrad = createGoldGradient(-60, -140, 60, 40, th);
+      ctx.strokeStyle = tGrad;
+      ctx.fillStyle = 'rgba(226, 192, 125, 0.12)';
+      ctx.lineWidth = 2.5;
+      for (let tier = 0; tier < 3; tier++) {
+        const w = 48 + tier * 24;
+        const top = -135 + tier * 42;
+        const bot = top + 64;
+        ctx.beginPath();
+        ctx.moveTo(0, top);
+        ctx.lineTo(w, bot);
+        ctx.lineTo(-w, bot);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+      }
+      drawFourPointStar(0, -150, 15, 4.5, lt * 0.8, th.primaryBright);
+      ctx.restore();
+    };
+
+    drawMiniTree(-78, 78, 0.62, 0.55);
+    drawMiniTree(82, 82, 0.58, 0.5);
+    drawMiniTree(0, 72, 0.95, 0.95);
+
+    // Swirling Golden Snow Inside Globe
+    for (let i = 0; i < 34; i++) {
+      const sx = Math.sin(lt * 1.1 + i * 1.9) * (radius * 0.78);
+      const sy = (((lt * 48 + i * 29) % (radius * 1.8)) - radius * 0.9);
+      const sr = 2 + (i % 3) * 1.3;
+      ctx.fillStyle = i % 2 === 0 ? th.primaryBright : '#ffffff';
+      ctx.globalAlpha = 0.45 + 0.4 * Math.sin(lt * 3 + i);
+      ctx.beginPath();
+      ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Snowy Ground Hill
+    ctx.globalAlpha = 1;
+    const hill = ctx.createLinearGradient(0, radius * 0.45, 0, radius);
+    hill.addColorStop(0, th.primary);
+    hill.addColorStop(1, th.primaryDeep);
+    ctx.fillStyle = hill;
+    ctx.beginPath();
+    ctx.ellipse(0, radius * 0.92, radius * 1.05, radius * 0.42, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Glass Specular Highlight Reflection
+    const glassSheen = ctx.createLinearGradient(-radius * 0.7, -radius * 0.8, radius * 0.4, radius * 0.4);
+    glassSheen.addColorStop(0, 'rgba(255, 255, 255, 0.26)');
+    glassSheen.addColorStop(0.35, 'rgba(255, 255, 255, 0.04)');
+    glassSheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    ctx.fillStyle = glassSheen;
+    ctx.fillRect(-radius, -radius, radius * 2, radius * 2);
+    ctx.restore();
+
+    // Metallic Gold Rim around Globe
+    ctx.strokeStyle = createGoldGradient(-radius, -radius, radius, radius, th);
+    ctx.lineWidth = 6;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.stroke();
+
+    // Ornate Pedestal Base
+    const baseW = radius * 1.15;
+    const baseY = radius - 10;
+    const baseGrad = createGoldGradient(-baseW / 2, baseY, baseW / 2, baseY + 56, th);
+    ctx.fillStyle = baseGrad;
+    ctx.beginPath();
+    ctx.roundRect(-baseW * 0.42, baseY, baseW * 0.84, 24, 10);
+    ctx.roundRect(-baseW * 0.54, baseY + 20, baseW * 1.08, 30, 12);
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  // Bespoke Art Deco Wreath & Candlelight Centerpiece (Scene 2 when no photo)
+  function drawArtDecoWreath(cx, cy, radius, lt, th) {
+    const enter = easeOutBack(seg(lt, 0.15, 1.1));
+    if (enter <= 0.01) return;
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(enter, enter);
+
+    const goldGrad = createGoldGradient(-radius, -radius, radius, radius, th);
+
+    // Outer Botanical Geometric Wreath Rings
+    for (let ring = 0; ring < 2; ring++) {
+      ctx.save();
+      ctx.rotate((ring === 0 ? 1 : -1) * lt * 0.12);
+      const count = 24;
+      const r = radius - ring * 24;
+      for (let i = 0; i < count; i++) {
+        const a = (i / count) * Math.PI * 2;
+        ctx.save();
+        ctx.rotate(a);
+        ctx.translate(r, 0);
+        ctx.rotate(0.45);
+        ctx.strokeStyle = goldGrad;
+        ctx.fillStyle = ring === 0 ? 'rgba(226, 192, 125, 0.14)' : 'rgba(255, 255, 255, 0.08)';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, 22, 8, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+      }
+      ctx.restore();
+    }
+
+    // Berry / Pearl Accents around Wreath
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * Math.PI * 2 + lt * 0.08;
+      const bx = Math.cos(a) * (radius - 12);
+      const by = Math.sin(a) * (radius - 12);
+      ctx.fillStyle = th.primaryBright;
+      ctx.beginPath();
+      ctx.arc(bx, by, 6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Central Glowing Pillar Candle
+    const flicker = 1 + 0.08 * Math.sin(lt * 11) + 0.04 * Math.cos(lt * 19);
+    const candleGlow = ctx.createRadialGradient(0, -35, 5, 0, -35, 150 * flicker);
+    candleGlow.addColorStop(0, 'rgba(255, 215, 130, 0.45)');
+    candleGlow.addColorStop(0.5, th.glow);
+    candleGlow.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = candleGlow;
+    ctx.beginPath();
+    ctx.arc(0, -35, 150 * flicker, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Candle Body
+    const cGrad = ctx.createLinearGradient(-26, 0, 26, 0);
+    cGrad.addColorStop(0, th.primaryDeep);
+    cGrad.addColorStop(0.5, th.textMain);
+    cGrad.addColorStop(1, th.primaryDeep);
+    ctx.fillStyle = cGrad;
+    ctx.beginPath();
+    ctx.roundRect(-24, -10, 48, 115, 8);
+    ctx.fill();
+
+    // Gold Candle Holder Dish
+    ctx.fillStyle = goldGrad;
+    ctx.beginPath();
+    ctx.roundRect(-48, 100, 96, 14, 7);
+    ctx.fill();
+
+    // Animated Flame
+    ctx.save();
+    ctx.translate(0, -28);
+    ctx.scale(flicker, 1 / Math.sqrt(flicker));
+    ctx.fillStyle = '#ffae42';
+    ctx.beginPath();
+    ctx.moveTo(0, -34);
+    ctx.bezierCurveTo(18, -10, 14, 14, 0, 16);
+    ctx.bezierCurveTo(-14, 14, -18, -10, 0, -34);
+    ctx.fill();
+
+    ctx.fillStyle = '#fff9e6';
+    ctx.beginPath();
+    ctx.moveTo(0, -20);
+    ctx.bezierCurveTo(8, -5, 6, 10, 0, 12);
+    ctx.bezierCurveTo(-6, 10, -8, -5, 0, -20);
+    ctx.fill();
+    ctx.restore();
+
+    ctx.restore();
+  }
+
+  // User Photo in Celestial Gold Halo Frame (Scene 2 when photo uploaded)
+  function drawFramedPortrait(cx, cy, radius, lt, th) {
+    const enter = easeOutBack(seg(lt, 0.15, 1.0));
+    if (enter <= 0.01) return;
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.scale(enter, enter);
+
+    // Outer Halo Glow
+    const halo = ctx.createRadialGradient(0, 0, radius * 0.8, 0, 0, radius * 1.45);
+    halo.addColorStop(0, th.glow);
+    halo.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = halo;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius * 1.45, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Rotating Orbit Ring with Stars
+    ctx.save();
+    ctx.rotate(lt * 0.18);
+    ctx.strokeStyle = th.primary;
+    ctx.lineWidth = 2;
+    ctx.globalAlpha = 0.65;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius + 28, 0, Math.PI * 2);
+    ctx.stroke();
+    for (let i = 0; i < 6; i++) {
+      const a = (i * Math.PI) / 3;
+      drawFourPointStar(Math.cos(a) * (radius + 28), Math.sin(a) * (radius + 28), 13, 4, lt, th.primaryBright);
+    }
+    ctx.restore();
+
+    // Circular Photo Crop with Gentle Ken Burns Zoom
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.clip();
+
+    const zoom = 1 + 0.06 * (lt / 6.0);
+    const sw = Math.min(userPhoto.naturalWidth, userPhoto.naturalHeight);
+    const sx = (userPhoto.naturalWidth - sw) / 2;
+    const sy = (userPhoto.naturalHeight - sw) / 2;
+    const drawR = radius * zoom;
+    ctx.drawImage(userPhoto, sx, sy, sw, sw, -drawR, -drawR, drawR * 2, drawR * 2);
+    ctx.restore();
+
+    // Double Metallic Gold Border
+    ctx.strokeStyle = createGoldGradient(-radius, -radius, radius, radius, th);
+    ctx.lineWidth = 7;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius + 13, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  // Luxury Frosted Glass Itinerary Card (Scene 3)
+  function drawItineraryCard(idx, iconType, label, line1, line2, centerY, lt, th) {
+    const enter = easeOutCubic(seg(lt, 0.35 + idx * 0.55, 0.95));
+    if (enter <= 0.005) return;
+
+    const cardW = 840;
+    const cardH = 270;
+    const x = (W - cardW) / 2;
+    const slideY = (1 - enter) * 55;
+    const y = centerY - cardH / 2 + slideY;
+
+    ctx.save();
+    ctx.globalAlpha = enter;
+
+    // Frosted Dark Glass Fill
+    ctx.fillStyle = th.cardBg;
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.45)';
+    ctx.shadowBlur = 32;
+    ctx.shadowOffsetY = 14;
+    ctx.beginPath();
+    ctx.roundRect(x, y, cardW, cardH, 28);
+    ctx.fill();
+
+    // Reset shadow for crisp border & inner highlight
+    ctx.shadowColor = 'transparent';
+    ctx.strokeStyle = createGoldGradient(x, y, x + cardW, y + cardH, th);
+    ctx.lineWidth = 2.4;
+    ctx.stroke();
+
+    // Subtle Top Glass Sheen
+    const sheen = ctx.createLinearGradient(x, y, x, y + cardH * 0.45);
+    sheen.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
+    sheen.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    ctx.fillStyle = sheen;
+    ctx.beginPath();
+    ctx.roundRect(x + 2, y + 2, cardW - 4, cardH * 0.45, [26, 26, 0, 0]);
+    ctx.fill();
+
+    // Left Minimalist Vector Icon Medallion
+    const iconCX = x + 115;
+    const iconCY = y + cardH / 2;
+    ctx.strokeStyle = th.primary;
+    ctx.lineWidth = 2.4;
+    ctx.beginPath();
+    ctx.arc(iconCX, iconCY, 54, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.fillStyle = 'rgba(226, 192, 125, 0.09)';
+    ctx.fill();
+
+    // Custom Minimalist Gold Icons
+    ctx.strokeStyle = th.primaryBright;
+    ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    if (iconType === 'calendar') {
+      ctx.strokeRect(iconCX - 22, iconCY - 18, 44, 40);
+      ctx.beginPath();
+      ctx.moveTo(iconCX - 22, iconCY - 6);
+      ctx.lineTo(iconCX + 22, iconCY - 6);
+      ctx.moveTo(iconCX - 11, iconCY - 24);
+      ctx.lineTo(iconCX - 11, iconCY - 13);
+      ctx.moveTo(iconCX + 11, iconCY - 24);
+      ctx.lineTo(iconCX + 11, iconCY - 13);
+      ctx.stroke();
+      drawFourPointStar(iconCX, iconCY + 9, 9, 3, 0, th.primaryBright);
+    } else if (iconType === 'pin') {
+      ctx.beginPath();
+      ctx.arc(iconCX, iconCY - 6, 17, Math.PI, 0, false);
+      ctx.bezierCurveTo(iconCX + 17, iconCY + 8, iconCX, iconCY + 24, iconCX, iconCY + 24);
+      ctx.bezierCurveTo(iconCX, iconCY + 24, iconCX - 17, iconCY + 8, iconCX - 17, iconCY - 6);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(iconCX, iconCY - 6, 5.5, 0, Math.PI * 2);
+      ctx.stroke();
+    } else {
+      // Champagne Flute / RSVP Star Icon
+      ctx.beginPath();
+      ctx.moveTo(iconCX - 13, iconCY - 22);
+      ctx.lineTo(iconCX + 13, iconCY - 22);
+      ctx.lineTo(iconCX + 9, iconCY + 2);
+      ctx.quadraticCurveTo(iconCX, iconCY + 10, iconCX - 9, iconCY + 2);
+      ctx.closePath();
+      ctx.moveTo(iconCX, iconCY + 7);
+      ctx.lineTo(iconCX, iconCY + 23);
+      ctx.moveTo(iconCX - 12, iconCY + 23);
+      ctx.lineTo(iconCX + 12, iconCY + 23);
+      ctx.stroke();
+    }
+
+    // Card Text Content (Left-aligned next to medallion)
+    const textX = x + 205;
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+
+    // Category Eyebrow Label
+    ctx.font = '700 22px "Cinzel", Georgia, serif';
+    ctx.fillStyle = th.primary;
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '4px';
+    ctx.fillText(label.toUpperCase(), textX, y + 66);
+    if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
+
+    // Primary Line
+    let sz1 = 44;
+    ctx.font = `600 ${sz1}px "Cormorant Garamond", Georgia, serif`;
+    while (ctx.measureText(line1).width > 590 && sz1 > 26) {
+      sz1 -= 2;
+      ctx.font = `600 ${sz1}px "Cormorant Garamond", Georgia, serif`;
+    }
+    ctx.fillStyle = th.textMain;
+    ctx.fillText(line1, textX, y + 134);
+
+    // Secondary Line
+    let sz2 = 34;
+    ctx.font = `500 ${sz2}px "Cormorant Garamond", Georgia, serif`;
+    while (ctx.measureText(line2).width > 590 && sz2 > 22) {
+      sz2 -= 2;
+      ctx.font = `500 ${sz2}px "Cormorant Garamond", Georgia, serif`;
+    }
+    ctx.fillStyle = th.textMuted;
+    ctx.fillText(line2, textX, y + 196);
+
+    ctx.restore();
+  }
+
+  /* ============================================================================
+     4. MASTER SCENE RENDERER (1080 x 1920)
+     ============================================================================ */
+  function drawBackgroundAndAtmosphere(t, th) {
+    // Rich Vertical Luxury Gradient
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, th.bgTop);
+    bg.addColorStop(0.5, th.bgMid);
+    bg.addColorStop(1, th.bgBot);
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle Center Ambient Spotlight
+    const spot = ctx.createRadialGradient(W / 2, H * 0.42, 40, W / 2, H * 0.42, H * 0.62);
+    spot.addColorStop(0, th.glow);
+    spot.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = spot;
+    ctx.fillRect(0, 0, W, H);
+
+    // Depth-of-Field Bokeh Light Orbs
+    for (const orb of BOKEH_ORBS) {
+      const oy = ((orb.y - t * orb.speedY) % 1 + 1) % 1;
+      const ox = orb.x + Math.sin(t * 0.4 + orb.phase) * 0.025;
+      const pulse = 0.75 + 0.25 * Math.sin(t * 1.6 + orb.phase);
+      const grad = ctx.createRadialGradient(ox * W, oy * H, 0, ox * W, oy * H, orb.r);
+      grad.addColorStop(0, th.primaryBright);
+      grad.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.save();
+      ctx.globalAlpha = orb.alpha * pulse;
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(ox * W, oy * H, orb.r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  function drawSnowAndSparkles(t, th, intensity = 1) {
+    ctx.save();
+    for (const p of SNOW_DUST) {
+      const py = ((p.y + t * p.speedY) % 1.06) - 0.03;
+      const px = p.x * W + Math.sin(t * 0.9 + p.phase) * p.drift;
+      const twinkle = 0.45 + 0.55 * Math.sin(t * 3.2 + p.phase);
+      ctx.globalAlpha = (p.isGold ? 0.75 : 0.45) * twinkle * intensity;
+      ctx.fillStyle = p.isGold ? th.primaryBright : '#ffffff';
+      ctx.beginPath();
+      ctx.arc(px, py * H, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawSceneContent(sceneIdx, lt, globalT, th) {
+    const goldTitleGrad = createGoldGradient(180, 0, W - 180, 0, th);
+
+    if (sceneIdx === 0) {
+      /* --- SCENE 1: THE GOLDEN SNOWGLOBE & ART DECO REVEAL (0s - 5.5s) --- */
+      drawArtDecoArchFrame(globalT, seg(lt, 0, 1.3), th);
+
+      drawMaskedText(val('inOpening').toUpperCase(), W / 2, 340, {
+        size: 32,
+        font: 'Cinzel',
+        weight: '700',
+        color: th.primary,
+        progress: seg(lt, 0.4, 0.9),
+        letterSpacing: 9
+      });
+
+      drawFiligreeDivider(W / 2, 405, 420, seg(lt, 0.65, 0.9), th);
+
+      // Centerpiece Golden Snowglobe
+      drawGoldenSnowglobe(W / 2, 780, 235, lt, th);
+
+      // Script Title Reveal
+      drawMaskedText(val('inIntroScript'), W / 2, 1215, {
+        size: 112,
+        font: 'Great Vibes',
+        color: goldTitleGrad,
+        progress: seg(lt, 1.4, 1.1),
+        maxWidth: 880,
+        shadow: true
+      });
+
+      drawFiligreeDivider(W / 2, 1320, 520, seg(lt, 1.8, 0.9), th);
+
+      drawMaskedText(`HOSTED BY ${val('inHost').toUpperCase()}`, W / 2, 1410, {
+        size: 30,
+        font: 'Cinzel',
+        weight: '600',
+        color: th.textMain,
+        progress: seg(lt, 2.1, 0.9),
+        letterSpacing: 6,
+        maxWidth: 840
+      });
+
+    } else if (sceneIdx === 1) {
+      /* --- SCENE 2: EVENT & HOST SHOWCASE (5.5s - 11.5s) --- */
+      drawArtDecoArchFrame(globalT, 1, th);
+
+      drawMaskedText('PLEASE JOIN US FOR', W / 2, 290, {
+        size: 30,
+        font: 'Cinzel',
+        weight: '600',
+        color: th.primary,
+        progress: seg(lt, 0.15, 0.85),
+        letterSpacing: 8
+      });
+
+      // Photo Halo OR Art Deco Wreath & Candle
+      if (userPhoto) {
+        drawFramedPortrait(W / 2, 675, 245, lt, th);
+      } else {
+        drawArtDecoWreath(W / 2, 675, 235, lt, th);
+      }
+
+      drawFiligreeDivider(W / 2, 1020, 480, seg(lt, 0.7, 0.9), th);
+
+      // Grand Event Title
+      drawMaskedText(val('inEventTitle'), W / 2, 1155, {
+        size: 132,
+        font: 'Great Vibes',
+        color: goldTitleGrad,
+        progress: seg(lt, 0.85, 1.1),
+        maxWidth: 900,
+        shadow: true
+      });
+
+      drawMaskedText('In Celebration With', W / 2, 1305, {
+        size: 38,
+        font: 'Cormorant Garamond',
+        weight: '500',
+        color: th.textMuted,
+        progress: seg(lt, 1.25, 0.85)
+      });
+
+      drawMaskedText(val('inHost'), W / 2, 1385, {
+        size: 52,
+        font: 'Cinzel',
+        weight: '600',
+        color: th.textMain,
+        progress: seg(lt, 1.5, 0.95),
+        maxWidth: 860,
+        letterSpacing: 3
+      });
+
+      drawFiligreeDivider(W / 2, 1475, 360, seg(lt, 1.8, 0.8), th);
+
+    } else if (sceneIdx === 2) {
+      /* --- SCENE 3: EDITORIAL GLASSMORPHISM ITINERARY CARDS (11.5s - 18.0s) --- */
+      drawArtDecoArchFrame(globalT, 1, th);
+
+      drawMaskedText('THE DETAILS', W / 2, 265, {
+        size: 30,
+        font: 'Cinzel',
+        weight: '700',
+        color: th.primary,
+        progress: seg(lt, 0.1, 0.8),
+        letterSpacing: 10
+      });
+
+      drawMaskedText('An Evening to Remember', W / 2, 355, {
+        size: 86,
+        font: 'Great Vibes',
+        color: goldTitleGrad,
+        progress: seg(lt, 0.25, 0.95),
+        maxWidth: 860
+      });
+
+      // Three Staggered Glassmorphism Cards
+      drawItineraryCard(0, 'calendar', 'When', val('inDate'), val('inTime'), 615, lt, th);
+      drawItineraryCard(1, 'pin', 'Where', val('inVenue'), val('inAddress'), 935, lt, th);
+      drawItineraryCard(2, 'rsvp', 'RSVP & Attire', val('inRsvp1'), `${val('inRsvp2')}  •  ${val('inDress')}`, 1255, lt, th);
+
+      drawFiligreeDivider(W / 2, 1485, 440, seg(lt, 2.0, 0.85), th);
+
+    } else {
+      /* --- SCENE 4: WARMEST WISHES & GRAND FINALE (18.0s - 24.0s) --- */
+      drawArtDecoArchFrame(globalT, 1, th);
+
+      // Radiant Starburst Crest at Top
+      const crestP = easeOutBack(seg(lt, 0.15, 1.0));
+      if (crestP > 0.01) {
+        ctx.save();
+        ctx.translate(W / 2, 430);
+        ctx.scale(crestP, crestP);
+        const burst = ctx.createRadialGradient(0, 0, 10, 0, 0, 210);
+        burst.addColorStop(0, th.glow);
+        burst.addColorStop(1, 'rgba(0,0,0,0)');
+        ctx.fillStyle = burst;
+        ctx.beginPath();
+        ctx.arc(0, 0, 210, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = th.primary;
+        ctx.lineWidth = 1.8;
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath();
+        ctx.arc(0, 0, 105, 0, Math.PI * 2);
+        ctx.stroke();
+
+        drawFourPointStar(0, 0, 68, 18, globalT * 0.25, goldTitleGrad);
+        drawFourPointStar(0, 0, 38, 10, Math.PI / 4 - globalT * 0.25, th.primaryBright);
+        ctx.restore();
+      }
+
+      drawMaskedText(val('inClosingTitle'), W / 2, 665, {
+        size: 114,
+        font: 'Great Vibes',
+        color: goldTitleGrad,
+        progress: seg(lt, 0.45, 1.05),
+        maxWidth: 880,
+        shadow: true
+      });
+
+      drawFiligreeDivider(W / 2, 775, 460, seg(lt, 0.75, 0.85), th);
+
+      // Custom Closing Message (Graceful Line-by-Line Reveal)
+      drawWrappedParagraph(
+        val('inClosingMsg'),
+        W / 2,
+        895,
+        740,
+        66,
+        44,
+        th.textMain,
+        seg(lt, 1.0, 1.4)
+      );
+
+      drawFiligreeDivider(W / 2, 1265, 360, seg(lt, 1.8, 0.8), th);
+
+      drawMaskedText('WITH WARMEST WISHES', W / 2, 1355, {
+        size: 28,
+        font: 'Cinzel',
+        weight: '600',
+        color: th.primary,
+        progress: seg(lt, 2.0, 0.85),
+        letterSpacing: 8
+      });
+
+      drawMaskedText(val('inHost'), W / 2, 1455, {
+        size: 86,
+        font: 'Great Vibes',
+        color: th.primaryBright,
+        progress: seg(lt, 2.25, 1.0),
+        maxWidth: 860
+      });
+    }
+  }
+
+  function renderFrame(t, isExporting = false) {
+    const th = THEMES[currentThemeIdx];
+    drawBackgroundAndAtmosphere(t, th);
+
+    // Determine active scene
+    let sceneIdx = 0;
+    for (let i = SCENE_STARTS.length - 1; i >= 0; i--) {
+      if (t >= SCENE_STARTS[i]) {
+        sceneIdx = i;
+        break;
+      }
+    }
+    const lt = t - SCENE_STARTS[sceneIdx];
+
+    // Smooth cross-dissolve transition between scenes (0.65s)
+    const transDur = 0.65;
+    if (lt < transDur && (sceneIdx > 0 || !isExporting)) {
+      const prevIdx = (sceneIdx + 3) % 4;
+      const prevDur = sceneIdx > 0
+        ? SCENE_STARTS[sceneIdx] - SCENE_STARTS[sceneIdx - 1]
+        : DURATION - SCENE_STARTS[3];
+      const fade = easeInOutSine(lt / transDur);
+
+      ctx.save();
+      ctx.globalAlpha = 1 - fade;
+      drawSceneContent(prevIdx, prevDur + lt * 0.5, t, th);
+      ctx.restore();
+
+      ctx.save();
+      ctx.globalAlpha = fade;
+      drawSceneContent(sceneIdx, lt, t, th);
+      ctx.restore();
+    } else {
+      drawSceneContent(sceneIdx, lt, t, th);
+    }
+
+    // Foreground Golden Snow & Bokeh Sparkle Layer
+    const snowBoost = sceneIdx === 3 ? 1.35 : 1.0;
+    drawSnowAndSparkles(t, th, snowBoost);
+
+    // Gentle fade-in at 0s and fade-out at 24s for seamless export
+    if (isExporting) {
+      if (t < 0.4) {
+        ctx.fillStyle = `rgba(5, 6, 9, ${1 - t / 0.4})`;
+        ctx.fillRect(0, 0, W, H);
+      } else if (t > DURATION - 0.6) {
+        ctx.fillStyle = `rgba(5, 6, 9, ${(t - (DURATION - 0.6)) / 0.6})`;
+        ctx.fillRect(0, 0, W, H);
+      }
+    }
+
+    return sceneIdx;
+  }
+
+  /* ============================================================================
+     5. PROCEDURAL WEB AUDIO API HOLIDAY SOUNDSCAPE ENGINE
+     ============================================================================ */
+  function getAudioMixMode() {
+    return document.getElementById('inAudioMix').value;
+  }
+
+  function scheduleHolidaySoundtrack(audioCtx, startTime, offsetSeconds = 0) {
+    const mixMode = getAudioMixMode();
+    const masterGain = audioCtx.createGain();
+    const compressor = audioCtx.createDynamicsCompressor();
+    compressor.threshold.value = -14;
+    compressor.ratio.value = 3;
+    masterGain.gain.value = 0.85;
+    masterGain.connect(compressor);
+    compressor.connect(audioCtx.destination);
+
+    // Noise buffer for sleigh bells & magical wind shimmers
+    const noiseLen = audioCtx.sampleRate * 2;
+    const noiseBuf = audioCtx.createBuffer(1, noiseLen, audioCtx.sampleRate);
+    const noiseData = noiseBuf.getChannelData(0);
+    for (let i = 0; i < noiseLen; i++) noiseData[i] = Math.random() * 2 - 1;
+
+    const fxBus = audioCtx.createGain();
+    fxBus.gain.value = (mixMode === 'both' || mixMode === 'fx') ? 1.0 : 0.0;
+    fxBus.connect(masterGain);
+
+    // Helper: Schedule a sound event relative to timeline position `relT`
+    const at = (relT) => startTime + (relT - offsetSeconds);
+
+    function playCelestaNote(freq, relT, dur = 1.9, peak = 0.16) {
+      if (relT + dur < offsetSeconds || relT > DURATION) return;
+      const t = Math.max(startTime, at(relT));
+
+      // Fundamental warm sine + bell harmonic overtone
+      [1, 2, 3.01].forEach((mult, idx) => {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = idx === 0 ? 'sine' : 'triangle';
+        osc.frequency.setValueAtTime(freq * mult, t);
+
+        const amp = peak * (idx === 0 ? 1 : idx === 1 ? 0.28 : 0.09);
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.linearRampToValueAtTime(amp, t + 0.015);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur / (idx + 1));
+
+        osc.connect(g);
+        g.connect(fxBus);
+        osc.start(t);
+        osc.stop(t + dur + 0.05);
+      });
+    }
+
+    function playSleighBellShimmer(relT, dur = 0.75, peak = 0.14) {
+      if (relT + dur < offsetSeconds || relT > DURATION) return;
+      const t = Math.max(startTime, at(relT));
+
+      // Filtered high-frequency jingle burst
+      const src = audioCtx.createBufferSource();
+      src.buffer = noiseBuf;
+      src.loop = true;
+
+      const hp = audioCtx.createBiquadFilter();
+      hp.type = 'highpass';
+      hp.frequency.setValueAtTime(5200, t);
+
+      const bp = audioCtx.createBiquadFilter();
+      bp.type = 'bandpass';
+      bp.frequency.setValueAtTime(7800, t);
+      bp.Q.value = 2.2;
+
+      const g = audioCtx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.linearRampToValueAtTime(peak, t + 0.08);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+      src.connect(hp);
+      hp.connect(bp);
+      bp.connect(g);
+      g.connect(fxBus);
+      src.start(t);
+      src.stop(t + dur + 0.05);
+
+      // Metallic bell partials
+      [4186, 5274, 6271].forEach((f, i) => {
+        const o = audioCtx.createOscillator();
+        const og = audioCtx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(f, t + i * 0.03);
+        og.gain.setValueAtTime(0.0001, t + i * 0.03);
+        og.gain.linearRampToValueAtTime(peak * 0.22, t + i * 0.03 + 0.02);
+        og.gain.exponentialRampToValueAtTime(0.0001, t + dur * 0.7);
+        o.connect(og);
+        og.connect(fxBus);
+        o.start(t + i * 0.03);
+        o.stop(t + dur);
+      });
+    }
+
+    function playWarmPadChord(freqs, relT, dur = 4.5, peak = 0.065) {
+      if (relT + dur < offsetSeconds || relT > DURATION) return;
+      const t = Math.max(startTime, at(relT));
+      freqs.forEach((f) => {
+        const osc = audioCtx.createOscillator();
+        const lp = audioCtx.createBiquadFilter();
+        const g = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(f, t);
+        lp.type = 'lowpass';
+        lp.frequency.setValueAtTime(680, t);
+
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.linearRampToValueAtTime(peak, t + 0.85);
+        g.gain.setValueAtTime(peak, t + dur - 1.1);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+
+        osc.connect(lp);
+        lp.connect(g);
+        g.connect(fxBus);
+        osc.start(t);
+        osc.stop(t + dur + 0.05);
+      });
+    }
+
+    // --- CHOREOGRAPHED 24-SECOND HOLIDAY SCORE ---
+    // Scene 1 (0.0s - 5.5s): Magical Snowglobe Awakening & Celesta Motif
+    playSleighBellShimmer(0.15, 0.9, 0.13);
+    playWarmPadChord([261.63, 329.63, 392.00, 493.88], 0.2, 5.2, 0.055); // Cmaj7
+    const introArp = [523.25, 659.25, 783.99, 987.77, 1046.50, 1318.51];
+    introArp.forEach((f, i) => playCelestaNote(f, 0.55 + i * 0.18, 2.1, 0.13));
+    // Festive Holiday Melody Phrase 1
+    playCelestaNote(783.99, 2.2, 1.4, 0.15); // G5
+    playCelestaNote(659.25, 2.75, 1.2, 0.13); // E5
+    playCelestaNote(783.99, 3.25, 1.4, 0.15); // G5
+    playCelestaNote(1046.50, 3.85, 2.2, 0.18); // C6
+
+    // Scene 2 (5.5s - 11.5s): Host & Wreath Showcase
+    playSleighBellShimmer(5.45, 0.85, 0.16);
+    playWarmPadChord([349.23, 440.00, 523.25, 659.25], 5.5, 5.8, 0.055); // Fmaj7
+    [523.25, 659.25, 783.99, 1046.50].forEach((f, i) => playCelestaNote(f, 5.8 + i * 0.14, 1.8, 0.12));
+    playCelestaNote(880.00, 7.2, 1.5, 0.15); // A5
+    playCelestaNote(783.99, 7.9, 1.4, 0.13); // G5
+    playCelestaNote(659.25, 8.6, 1.6, 0.14); // E5
+    playCelestaNote(587.33, 9.4, 1.9, 0.14); // D5
+
+    // Scene 3 (11.5s - 18.0s): Three Glassmorphism Cards Stagger Chimes
+    playSleighBellShimmer(11.45, 0.8, 0.15);
+    playWarmPadChord([293.66, 349.23, 440.00, 523.25], 11.5, 6.3, 0.05); // Dm7
+    // Card 1 chime
+    playCelestaNote(1046.50, 11.85, 1.6, 0.14);
+    playCelestaNote(1318.51, 12.02, 1.8, 0.12);
+    // Card 2 chime
+    playCelestaNote(1174.66, 12.45, 1.6, 0.14);
+    playCelestaNote(1567.98, 12.62, 1.8, 0.12);
+    // Card 3 chime
+    playCelestaNote(1318.51, 13.05, 1.8, 0.15);
+    playCelestaNote(1760.00, 13.22, 2.0, 0.13);
+    // Gentle twinkling counter-melody
+    playCelestaNote(1567.98, 15.0, 1.6, 0.11);
+    playCelestaNote(1318.51, 15.8, 1.6, 0.11);
+    playCelestaNote(1174.66, 16.6, 1.8, 0.12);
+
+    // Scene 4 (18.0s - 24.0s): Grand Finale & Warmest Wishes
+    playSleighBellShimmer(17.95, 1.05, 0.17);
+    playWarmPadChord([261.63, 329.63, 392.00, 523.25], 18.0, 5.8, 0.065); // C Major Grand
+    const finaleArp = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98, 2093.00];
+    finaleArp.forEach((f, i) => playCelestaNote(f, 18.25 + i * 0.15, 2.6, 0.14));
+    playSleighBellShimmer(20.6, 0.9, 0.11);
+    playCelestaNote(1567.98, 20.9, 2.2, 0.14);
+    playCelestaNote(1318.51, 21.5, 2.2, 0.14);
+    playCelestaNote(1046.50, 22.1, 2.4, 0.18);
+
+    // Custom Uploaded Song Mix
+    if (userAudioBuffer && (mixMode === 'both' || mixMode === 'mus')) {
+      const musicSrc = audioCtx.createBufferSource();
+      const musicGain = audioCtx.createGain();
+      musicSrc.buffer = userAudioBuffer;
+      musicSrc.loop = true;
+
+      const vol = (Number(val('inSongVol')) || 0) / 100;
+      const userStart = Math.max(0, Number(val('inSongOffset')) || 0);
+      const bufferOffset = (userStart + offsetSeconds) % userAudioBuffer.duration;
+      const remaining = Math.max(0.1, DURATION - offsetSeconds);
+
+      musicGain.gain.setValueAtTime(0.001, startTime);
+      musicGain.gain.linearRampToValueAtTime(vol, startTime + Math.min(0.8, remaining * 0.2));
+      if (remaining > 1.2) {
+        musicGain.gain.setValueAtTime(vol, startTime + remaining - 1.0);
+        musicGain.gain.linearRampToValueAtTime(0.0001, startTime + remaining);
+      }
+
+      musicSrc.connect(musicGain);
+      musicGain.connect(masterGain);
+      musicSrc.start(startTime, bufferOffset);
+      musicSrc.stop(startTime + remaining);
+    }
+
+    // Smooth master fade-out at end of 24s
+    const endTime = startTime + Math.max(0.1, DURATION - offsetSeconds);
+    masterGain.gain.setValueAtTime(0.85, Math.max(startTime, endTime - 0.8));
+    masterGain.gain.linearRampToValueAtTime(0.0001, endTime);
+
+    return masterGain;
+  }
+
+  /* ============================================================================
+     6. INTERACTIVE PLAYBACK, SCRUBBER & LIVE AUDIO SYNC
+     ============================================================================ */
+  let playhead = 0;
+  let isPlaying = true;
+  let isExporting = false;
+  let lastFrameNow = performance.now();
+
+  let liveAudioCtx = null;
+  let liveMasterGain = null;
+  let soundEnabled = false;
+
+  const scrubber = document.getElementById('scrubber');
+  const timeDisplay = document.getElementById('timeDisplay');
+  const sceneNameDisplay = document.getElementById('sceneNameDisplay');
+  const btnPlayPause = document.getElementById('btnPlayPause');
+  const statusBox = document.getElementById('statusBox');
+
+  function stopLiveAudio() {
+    if (liveMasterGain && liveAudioCtx) {
+      try {
+        liveMasterGain.gain.cancelScheduledValues(liveAudioCtx.currentTime);
+        liveMasterGain.gain.setTargetAtTime(0, liveAudioCtx.currentTime, 0.02);
+      } catch (e) {}
+      liveMasterGain = null;
+    }
+  }
+
+  function startLiveAudio(fromTime = playhead) {
+    if (!soundEnabled || !isPlaying || isExporting) return;
+    stopLiveAudio();
+    try {
+      liveAudioCtx = liveAudioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      if (liveAudioCtx.state === 'suspended') liveAudioCtx.resume();
+      liveMasterGain = scheduleHolidaySoundtrack(liveAudioCtx, liveAudioCtx.currentTime + 0.03, fromTime);
+    } catch (e) {}
+  }
+
+  function updateSoundUI() {
+    const label = soundEnabled ? 'Sound: On' : 'Sound: Off';
+    document.getElementById('soundLabel').textContent = label;
+    document.getElementById('btnSoundStage').textContent = label;
+    const dot = document.getElementById('soundDot');
+    dot.className = soundEnabled
+      ? 'w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]'
+      : 'w-2 h-2 rounded-full bg-slate-500';
+  }
+
+  function toggleSound() {
+    soundEnabled = !soundEnabled;
+    updateSoundUI();
+    if (soundEnabled) {
+      if (!isPlaying) {
+        isPlaying = true;
+        btnPlayPause.textContent = 'Pause';
+      }
+      startLiveAudio(playhead);
+    } else {
+      stopLiveAudio();
+    }
+  }
+
+  document.getElementById('btnSoundTop').addEventListener('click', toggleSound);
+  document.getElementById('btnSoundStage').addEventListener('click', toggleSound);
+
+  btnPlayPause.addEventListener('click', () => {
+    if (isExporting) return;
+    isPlaying = !isPlaying;
+    btnPlayPause.textContent = isPlaying ? 'Pause' : 'Play';
+    if (isPlaying) {
+      lastFrameNow = performance.now();
+      startLiveAudio(playhead);
+    } else {
+      stopLiveAudio();
+    }
+  });
+
+  document.getElementById('btnReplay').addEventListener('click', () => {
+    if (isExporting) return;
+    playhead = 0;
+    isPlaying = true;
+    btnPlayPause.textContent = 'Pause';
+    lastFrameNow = performance.now();
+    startLiveAudio(0);
+  });
+
+  document.querySelectorAll('.scene-jump').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (isExporting) return;
+      playhead = Number(btn.dataset.scene) || 0;
+      lastFrameNow = performance.now();
+      if (soundEnabled && isPlaying) startLiveAudio(playhead);
+    });
+  });
+
+  scrubber.addEventListener('input', () => {
+    if (isExporting) return;
+    playhead = Number(scrubber.value);
+    stopLiveAudio();
+  });
+  scrubber.addEventListener('change', () => {
+    if (isExporting) return;
+    if (soundEnabled && isPlaying) startLiveAudio(playhead);
+  });
+
+  function formatSec(s) {
+    const sec = Math.floor(s);
+    return `00:${sec < 10 ? '0' : ''}${sec}`;
+  }
+
+  function animationLoop(now) {
+    const dt = Math.min(0.1, (now - lastFrameNow) / 1000);
+    lastFrameNow = now;
+
+    if (!isExporting) {
+      if (isPlaying) {
+        const prev = playhead;
+        playhead += dt;
+        if (playhead >= DURATION) {
+          playhead %= DURATION;
+          if (soundEnabled && prev > DURATION - 0.5) startLiveAudio(0);
+        }
+      }
+      const activeScene = renderFrame(playhead, false);
+      scrubber.value = playhead.toFixed(2);
+      timeDisplay.textContent = `${formatSec(playhead)} / 00:24`;
+      sceneNameDisplay.textContent = SCENE_NAMES[activeScene];
+    }
+
+    requestAnimationFrame(animationLoop);
+  }
+
+  /* ============================================================================
+     7. UI CONTROLS, THEME SWITCHER & FILE UPLOADS
+     ============================================================================ */
+  // Theme cards
+  document.querySelectorAll('.theme-card').forEach((card) => {
+    card.addEventListener('click', () => {
+      currentThemeIdx = Number(card.dataset.theme) || 0;
+      document.querySelectorAll('.theme-card').forEach((c) => {
+        c.classList.remove('active', 'border-amber-300/60', 'bg-amber-300/10');
+        c.classList.add('border-white/10', 'bg-white/[0.03]');
+      });
+      card.classList.add('active', 'border-amber-300/60', 'bg-amber-300/10');
+      card.classList.remove('border-white/10', 'bg-white/[0.03]');
+    });
+  });
+
+  // Editor Tabs
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.tab-panel').forEach((p) => {
+        p.classList.toggle('hidden', p.id !== target);
+      });
+    });
+  });
+
+  // Photo Upload
+  const inPhoto = document.getElementById('inPhoto');
+  const btnClearPhoto = document.getElementById('btnClearPhoto');
+  inPhoto.addEventListener('change', () => {
+    const file = inPhoto.files[0];
+    if (!file) return;
+    const img = new Image();
+    img.onload = () => {
+      userPhoto = img;
+      btnClearPhoto.hidden = false;
+      statusBox.textContent = 'Portrait added! Jump to Scene 2 to preview the celestial halo.';
+    };
+    img.onerror = () => {
+      statusBox.textContent = 'Could not read that image file. Please try a JPG or PNG.';
+    };
+    img.src = URL.createObjectURL(file);
+  });
+  btnClearPhoto.addEventListener('click', () => {
+    userPhoto = null;
+    inPhoto.value = '';
+    btnClearPhoto.hidden = true;
+    statusBox.textContent = 'Portrait removed. Showing Art Deco Christmas Wreath centerpiece.';
+  });
+
+  // Song Upload
+  const inSong = document.getElementById('inSong');
+  const btnClearSong = document.getElementById('btnClearSong');
+  inSong.addEventListener('change', async () => {
+    const file = inSong.files[0];
+    if (!file) return;
+    statusBox.textContent = 'Decoding audio track…';
+    try {
+      const tempCtx = new OfflineAudioContext(1, 1, 48000);
+      userAudioBuffer = await tempCtx.decodeAudioData(await file.arrayBuffer());
+      btnClearSong.hidden = false;
+      if (document.getElementById('inAudioMix').value === 'fx') {
+        document.getElementById('inAudioMix').value = 'both';
+      }
+      statusBox.textContent = 'Custom song ready! Toggle Sound: On to audition the mix.';
+      if (soundEnabled) startLiveAudio(playhead);
+    } catch (e) {
+      userAudioBuffer = null;
+      statusBox.textContent = 'Could not decode that audio file. Please try an MP3, M4A, or WAV.';
+    }
+  });
+  btnClearSong.addEventListener('click', () => {
+    userAudioBuffer = null;
+    inSong.value = '';
+    btnClearSong.hidden = true;
+    if (soundEnabled) startLiveAudio(playhead);
+  });
+
+  document.getElementById('inSongVol').addEventListener('input', (e) => {
+    document.getElementById('volVal').textContent = `${e.target.value}%`;
+  });
+  document.getElementById('inAudioMix').addEventListener('change', () => {
+    if (soundEnabled) startLiveAudio(playhead);
+  });
+
+  /* ============================================================================
+     8. NATIVE 1080x1920 FULL HD MP4 ENCODER & MUXER (WEBCODECS + FALLBACK)
+     ============================================================================ */
+  function strBytes(s) {
+    return new Uint8Array([...s].map((c) => c.charCodeAt(0)));
+  }
+  function u32Bytes(...nums) {
+    const out = new Uint8Array(nums.length * 4);
+    const dv = new DataView(out.buffer);
+    nums.forEach((n, i) => dv.setUint32(i * 4, n));
+    return out;
+  }
+  function mp4Box(type, ...parts) {
+    let total = 8;
+    parts.forEach((p) => { total += p.length; });
+    const out = new Uint8Array(total);
+    new DataView(out.buffer).setUint32(0, total);
+    out.set(strBytes(type), 4);
+    let offset = 8;
+    parts.forEach((p) => { out.set(p, offset); offset += p.length; });
+    return out;
+  }
+
+  async function encodeOfflineAudioAAC() {
+    const mixMode = getAudioMixMode();
+    if (mixMode === 'none' || (mixMode === 'mus' && !userAudioBuffer)) return null;
+    if (!(window.AudioEncoder && window.AudioData && window.OfflineAudioContext)) return null;
+
+    const sampleRate = 48000;
+    const cfg = { codec: 'mp4a.40.2', sampleRate, numberOfChannels: 1, bitrate: 128000 };
+    try {
+      const sup = await AudioEncoder.isConfigSupported(cfg);
+      if (!sup.supported) return null;
+
+      const offline = new OfflineAudioContext(1, Math.ceil(DURATION * sampleRate), sampleRate);
+      scheduleHolidaySoundtrack(offline, 0, 0);
+      const rendered = await offline.startRendering();
+      const pcm = rendered.getChannelData(0);
+
+      const chunks = [];
+      let description = null;
+      let encErr = null;
+
+      const encoder = new AudioEncoder({
+        output(chunk, meta) {
+          const buf = new Uint8Array(chunk.byteLength);
+          chunk.copyTo(buf);
+          chunks.push({ data: buf });
+          if (meta && meta.decoderConfig && meta.decoderConfig.description) {
+            description = new Uint8Array(meta.decoderConfig.description);
+          }
+        },
+        error(e) { encErr = e; }
+      });
+
+      encoder.configure(cfg);
+      const step = 4800;
+      for (let i = 0; i < pcm.length; i += step) {
+        const frames = Math.min(step, pcm.length - i);
+        const audioData = new AudioData({
+          format: 'f32-planar',
+          sampleRate,
+          numberOfFrames: frames,
+          numberOfChannels: 1,
+          timestamp: Math.round((i * 1e6) / sampleRate),
+          data: pcm.slice(i, i + frames)
+        });
+        encoder.encode(audioData);
+        audioData.close();
+      }
+      await encoder.flush();
+      encoder.close();
+
+      if (encErr || !description || !chunks.length) return null;
+      return { samples: chunks, desc: description, sr: sampleRate };
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function mux1080pMp4(videoSamples, avcDesc, totalFrames, fps, audioTrack) {
+    const timescale = fps * 1000;
+    const durationMs = Math.round((totalFrames / fps) * 1000);
+    const keyFrames = [];
+    const videoSizes = [];
+    let totalVideoBytes = 0;
+
+    videoSamples.forEach((s, idx) => {
+      if (s.key) keyFrames.push(idx + 1);
+      videoSizes.push(s.data.length);
+      totalVideoBytes += s.data.length;
+    });
+
+    const audioSizes = [];
+    let totalAudioBytes = 0;
+    if (audioTrack) {
+      audioTrack.samples.forEach((s) => {
+        audioSizes.push(s.data.length);
+        totalAudioBytes += s.data.length;
+      });
+    }
+
+    const ftyp = mp4Box('ftyp', strBytes('isom'), u32Bytes(512), strBytes('isomiso2avc1mp41'));
+
+    function buildTkhd(trackId, volume, w, h) {
+      const tk = new Uint8Array(84);
+      const dv = new DataView(tk.buffer);
+      dv.setUint32(0, 3);
+      dv.setUint32(12, trackId);
+      dv.setUint32(20, durationMs);
+      dv.setUint16(36, volume);
+      dv.setUint32(40, 65536);
+      dv.setUint32(56, 65536);
+      dv.setUint32(72, 1073741824);
+      dv.setUint32(76, w * 65536);
+      dv.setUint32(80, h * 65536);
+      return mp4Box('tkhd', tk);
+    }
+
+    function buildMdhd(scale, dur) {
+      const md = new Uint8Array(24);
+      const dv = new DataView(md.buffer);
+      dv.setUint32(12, scale);
+      dv.setUint32(16, dur);
+      dv.setUint16(20, 0x55c4);
+      return mp4Box('mdhd', md);
+    }
+
+    function buildHdlr(kind) {
+      const hd = new Uint8Array(25);
+      hd.set(strBytes(kind), 8);
+      return mp4Box('hdlr', hd);
+    }
+
+    const dinf = mp4Box('dinf', mp4Box('dref', u32Bytes(0, 1), mp4Box('url ', u32Bytes(1))));
+
+    function buildMoov(mdatDataOffset) {
+      const mv = new Uint8Array(100);
+      const mvd = new DataView(mv.buffer);
+      mvd.setUint32(12, 1000);
+      mvd.setUint32(16, durationMs);
+      mvd.setUint32(20, 65536);
+      mvd.setUint16(24, 256);
+      mvd.setUint32(36, 65536);
+      mvd.setUint32(52, 65536);
+      mvd.setUint32(68, 1073741824);
+      mvd.setUint32(96, audioTrack ? 3 : 2);
+
+      const avc1 = new Uint8Array(78);
+      const avd = new DataView(avc1.buffer);
+      avd.setUint16(6, 1);
+      avd.setUint16(24, W);
+      avd.setUint16(26, H);
+      avd.setUint32(28, 4718592);
+      avd.setUint32(32, 4718592);
+      avd.setUint16(40, 1);
+      avd.setUint16(74, 24);
+      avd.setUint16(76, 65535);
+
+      const vStbl = mp4Box(
+        'stbl',
+        mp4Box('stsd', u32Bytes(0, 1), mp4Box('avc1', avc1, mp4Box('avcC', avcDesc))),
+        mp4Box('stts', u32Bytes(0, 1, totalFrames, 1000)),
+        mp4Box('stss', u32Bytes(0, keyFrames.length, ...keyFrames)),
+        mp4Box('stsc', u32Bytes(0, 1, 1, totalFrames, 1)),
+        mp4Box('stsz', u32Bytes(0, 0, totalFrames, ...videoSizes)),
+        mp4Box('stco', u32Bytes(0, 1, mdatDataOffset))
+      );
+
+      const tracks = [
+        mp4Box('mvhd', mv),
+        mp4Box(
+          'trak',
+          buildTkhd(1, 0, W, H),
+          mp4Box('mdia', buildMdhd(timescale, totalFrames * 1000), buildHdlr('vide'), mp4Box('minf', mp4Box('vmhd', u32Bytes(1), new Uint8Array(8)), dinf, vStbl))
+        )
+      ];
+
+      if (audioTrack) {
+        const A = audioTrack.samples.length;
+        const asc = [...audioTrack.desc];
+        const sd = [5, asc.length, ...asc];
+        const dc = [4, 13 + sd.length, 0x40, 0x15, ...new Array(11).fill(0), ...sd];
+        const es = [3, 3 + dc.length + 3, 0, 0, 0, ...dc, 6, 1, 2];
+
+        const mp4a = new Uint8Array(28);
+        const ad = new DataView(mp4a.buffer);
+        ad.setUint16(6, 1);
+        ad.setUint16(16, 1);
+        ad.setUint16(18, 16);
+        ad.setUint32(24, audioTrack.sr * 65536);
+
+        const aStbl = mp4Box(
+          'stbl',
+          mp4Box('stsd', u32Bytes(0, 1), mp4Box('mp4a', mp4a, mp4Box('esds', u32Bytes(0), new Uint8Array(es)))),
+          mp4Box('stts', u32Bytes(0, 1, A, 1024)),
+          mp4Box('stsc', u32Bytes(0, 1, 1, A, 1)),
+          mp4Box('stsz', u32Bytes(0, 0, A, ...audioSizes)),
+          mp4Box('stco', u32Bytes(0, 1, mdatDataOffset + totalVideoBytes))
+        );
+
+        tracks.push(
+          mp4Box(
+            'trak',
+            buildTkhd(2, 256, 0, 0),
+            mp4Box('mdia', buildMdhd(audioTrack.sr, A * 1024), buildHdlr('soun'), mp4Box('minf', mp4Box('smhd', u32Bytes(0, 0)), dinf, aStbl))
+          )
+        );
+      }
+
+      return mp4Box('moov', ...tracks);
+    }
+
+    const moovDummy = buildMoov(0);
+    const mdatOffset = ftyp.length + moovDummy.length + 8;
+    const mdatHeader = new Uint8Array(8);
+    new DataView(mdatHeader.buffer).setUint32(0, totalVideoBytes + totalAudioBytes + 8);
+    mdatHeader.set(strBytes('mdat'), 4);
+
+    const blobParts = [
+      ftyp,
+      buildMoov(mdatOffset),
+      mdatHeader,
+      ...videoSamples.map((s) => s.data),
+      ...(audioTrack ? audioTrack.samples.map((s) => s.data) : [])
+    ];
+
+    return new Blob(blobParts, { type: 'video/mp4' });
+  }
+
+  function presentExportedVideo(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const drawer = document.getElementById('exportResult');
+    const vid = document.getElementById('outputVideo');
+    const btnSave = document.getElementById('btnSaveFile');
+    const btnShare = document.getElementById('btnShareFile');
+
+    if (vid.dataset.blobUrl) URL.revokeObjectURL(vid.dataset.blobUrl);
+    vid.dataset.blobUrl = url;
+    vid.src = url;
+    drawer.hidden = false;
+
+    btnSave.onclick = () => {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      statusBox.textContent = 'Downloading 1080×1920 MP4… Check your Downloads folder.';
+    };
+
+    let shareFile = null;
+    try { shareFile = new File([blob], filename, { type: blob.type }); } catch (e) {}
+    if (shareFile && navigator.canShare && navigator.canShare({ files: [shareFile] })) {
+      btnShare.hidden = false;
+      btnShare.onclick = () => {
+        navigator.share({ files: [shareFile], title: 'Christmas Video Invitation' }).catch(() => {});
+      };
+    } else {
+      btnShare.hidden = true;
+    }
+
+    // Trigger immediate download + show preview player
+    btnSave.click();
+    statusBox.textContent = '1080p Full HD video ready! Watch below or click Save 1080p MP4.';
+    drawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  async function run1080pWebCodecsExport() {
+    if (!(window.VideoEncoder && window.VideoFrame)) return false;
+
+    const FPS = 30;
+    const totalFrames = Math.round(DURATION * FPS);
+    // H.264 High/Main Profile Level 4.2 supports 1080x1920 @ 30fps cleanly
+    const codecsToTry = ['avc1.64002a', 'avc1.4d002a', 'avc1.42002a'];
+    let chosenConfig = null;
+
+    for (const codec of codecsToTry) {
+      const cfg = {
+        codec,
+        width: W,
+        height: H,
+        bitrate: 8_500_000, // 8.5 Mbps crisp 1080p
+        framerate: FPS,
+        avc: { format: 'avc' }
+      };
+      try {
+        const res = await VideoEncoder.isConfigSupported(cfg);
+        if (res.supported) { chosenConfig = cfg; break; }
+      } catch (e) {}
+    }
+
+    if (!chosenConfig) return false;
+
+    try {
+      await Promise.all([
+        document.fonts.load('100px "Great Vibes"'),
+        document.fonts.load('600 60px "Cinzel"'),
+        document.fonts.load('500 50px "Cormorant Garamond"')
+      ]);
+
+      const samples = [];
+      let avcDesc = null;
+      let encodeErr = null;
+
+      const encoder = new VideoEncoder({
+        output(chunk, meta) {
+          const buf = new Uint8Array(chunk.byteLength);
+          chunk.copyTo(buf);
+          samples.push({ data: buf, key: chunk.type === 'key' });
+          if (meta && meta.decoderConfig && meta.decoderConfig.description) {
+            avcDesc = new Uint8Array(meta.decoderConfig.description);
+          }
+        },
+        error(e) { encodeErr = e; }
+      });
+
+      stopLiveAudio();
+      isExporting = true;
+      encoder.configure(chosenConfig);
+
+      for (let i = 0; i < totalFrames; i++) {
+        if (encodeErr) throw encodeErr;
+        const t = i / FPS;
+        renderFrame(t, true);
+
+        const frame = new VideoFrame(canvas, { timestamp: Math.round((i * 1e6) / FPS) });
+        encoder.encode(frame, { keyFrame: i % FPS === 0 });
+        frame.close();
+
+        while (encoder.encodeQueueSize > 6) {
+          await new Promise((r) => setTimeout(r, 4));
+        }
+        if (i % 12 === 0) {
+          const pct = Math.round((i / totalFrames) * 100);
+          statusBox.textContent = `Rendering 1080×1920 Full HD… ${pct}%`;
+          await new Promise((r) => setTimeout(r, 0));
+        }
+      }
+
+      await encoder.flush();
+      encoder.close();
+      isExporting = false;
+
+      if (!avcDesc || samples.length !== totalFrames) throw new Error('Incomplete encode');
+
+      statusBox.textContent = 'Mastering holiday audio & packaging MP4…';
+      const audioTrack = await encodeOfflineAudioAAC();
+      const finalMp4 = mux1080pMp4(samples, avcDesc, totalFrames, FPS, audioTrack);
+      presentExportedVideo(finalMp4, 'christmas-invitation-1080p.mp4');
+      return true;
+    } catch (e) {
+      isExporting = false;
+      return false;
+    }
+  }
+
+  async function runMediaRecorderFallback() {
+    const mimeCandidates = [
+      ['video/mp4;codecs=avc1', 'mp4'],
+      ['video/mp4', 'mp4'],
+      ['video/webm;codecs=vp9', 'webm'],
+      ['video/webm', 'webm']
+    ];
+    const supported = mimeCandidates.find(([m]) => window.MediaRecorder && MediaRecorder.isTypeSupported(m));
+    if (!supported) {
+      statusBox.textContent = 'Video export is not supported in this browser. Please open in Chrome or Safari.';
+      return;
+    }
+
+    stopLiveAudio();
+    isExporting = true;
+    const stream = canvas.captureStream(30);
+    let recCtx = null;
+
+    if (getAudioMixMode() !== 'none') {
+      try {
+        recCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const dest = recCtx.createMediaStreamDestination();
+        const master = scheduleHolidaySoundtrack(recCtx, recCtx.currentTime + 0.05, 0);
+        master.connect(dest);
+        dest.stream.getAudioTracks().forEach((tr) => stream.addTrack(tr));
+      } catch (e) {}
+    }
+
+    const chunks = [];
+    const recorder = new MediaRecorder(stream, {
+      mimeType: supported[0],
+      videoBitsPerSecond: 8_500_000
+    });
+    recorder.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
+
+    const startWall = performance.now();
+    recorder.start(250);
+
+    await new Promise((resolve) => {
+      function step(now) {
+        const elapsed = (now - startWall) / 1000;
+        if (elapsed >= DURATION) {
+          recorder.stop();
+          resolve();
+          return;
+        }
+        renderFrame(elapsed, true);
+        statusBox.textContent = `Recording 1080p video… ${Math.ceil(DURATION - elapsed)}s remaining`;
+        requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+
+    await new Promise((r) => { recorder.onstop = r; });
+    if (recCtx) recCtx.close();
+    isExporting = false;
+
+    const blob = new Blob(chunks, { type: supported[0].split(';')[0] });
+    presentExportedVideo(blob, `christmas-invitation-1080p.${supported[1]}`);
+  }
+
+  async function handleExportClick() {
+    if (isExporting) return;
+    if (getAudioMixMode() === 'mus' && !userAudioBuffer) {
+      statusBox.textContent = 'Please upload your custom song first, or switch the audio track option.';
+      return;
+    }
+
+    const exportBtns = [document.getElementById('btnExportTop'), document.getElementById('btnDownloadMain')];
+    exportBtns.forEach((b) => { b.disabled = true; });
+    statusBox.textContent = 'Preparing 1080×1920 Full HD master…';
+
+    const ok = await run1080pWebCodecsExport();
+    if (!ok) {
+      await runMediaRecorderFallback();
+    }
+
+    exportBtns.forEach((b) => { b.disabled = false; });
+    lastFrameNow = performance.now();
+  }
+
+  document.getElementById('btnExportTop').addEventListener('click', handleExportClick);
+  document.getElementById('btnDownloadMain').addEventListener('click', handleExportClick);
+
+  // Start Live Preview Loop
+  requestAnimationFrame(animationLoop);
+})();
+</script>
+</body>
+</html>
